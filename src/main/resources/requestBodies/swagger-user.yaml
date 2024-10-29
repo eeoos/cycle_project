@@ -1,0 +1,14 @@
+components:
+  schemas:
+    SocialLoginDTO:
+      type: object
+      properties:
+        socialId:
+          type: string
+        socialProvider:
+          type: string
+          description: "KAKAO / NAVER / GOOGLE"
+          example: "KAKAO"
+      required:
+        - socialId
+        - socialProvider

@@ -1,0 +1,47 @@
+openapi: 3.0.0
+info:
+  version: '1.0.0'
+  title: '자전거'
+  description: '자전거 프로젝트 api'
+paths:
+  /api/u/v1/social-login:
+    post:
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: socialLoginDTO
+          required: true
+          schema:
+            type: object
+            required:
+              - socialId
+              - socialProvider
+            properties:
+              socialId:
+                type: string
+              socialProvider:
+                type: string
+                description: "KAKAO / NAVER / GOOGLE"
+                example: "KAKAO"
+
+      responses:
+        '200':
+          description: 소셜로그인 성공 시
+          content:
+            application/json:
+              example:
+                accessToken: accessToken
+                refreshToken: refreshToken
+        '400':
+          $ref: '/swagger-response.yaml#/responses/BadRequestResponse'
+
+
+tags:
+  - name: user
+    description: userapi
+
+components:
+  schemas:
+    SocialLoginDTO:
+      $ref: 'requestBodies/swagger-user.yaml#/components/schemas/SocialLoginDTO'
